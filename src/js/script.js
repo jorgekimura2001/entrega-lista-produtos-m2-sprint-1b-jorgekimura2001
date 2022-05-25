@@ -7,19 +7,22 @@ function montarListaProdutos (listaProdutos){
     listaProdutos.forEach((produto) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
+        const span = document.createElement('span');
+        span.classList.add('span--categoria')
         const h3 = document.createElement('h3');
         const p = document.createElement('p');
-        const span = document.createElement('span');
+        
 
         // Adicionando dados do produto aos elementos
         img.src = produto.img;
         img.alt = produto.nome;
-        h3.innerText = produto.nome;
-        p.innerText = produto.preco;
-        span.innerText = produto.secao;
+        span.innerText = produto.secao; // categoria
+        h3.innerText = produto.nome; // nome do produto
+        p.innerText = `R$ ${produto.preco}.00`; // preco do produto
+        
 
         // Adicionando o elementos para o li
-        li.append(img, h3, p, span);
+        li.append(img,h3,span, p);
         // Adicionando li ao HTML
         ul.appendChild(li);
     });
@@ -58,3 +61,4 @@ function acharProduto (){
     console.log(acharItem)
 }
 acharProduto(produtos)
+
