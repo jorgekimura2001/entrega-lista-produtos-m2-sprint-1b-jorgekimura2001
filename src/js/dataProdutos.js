@@ -16,7 +16,7 @@ const produtos = [
     {
         nome: 'Yorgut de Morango',
         preco: 3,
-        secao: 'Laticinios',
+        secao: 'Laticínios',
         categoria: 'Yorgut',
         img: "./src/img/yorgut_morango.png"  
     },
