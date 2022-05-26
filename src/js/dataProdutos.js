@@ -57,3 +57,4 @@ const produtos = [
         img: './src/img/maca.png'
     }
 ]
+console.log(produtos[0].nome)

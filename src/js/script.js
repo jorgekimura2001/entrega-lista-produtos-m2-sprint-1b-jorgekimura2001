@@ -1,9 +1,11 @@
 // Selecionando elemento ul do HTML
-const ul = document.querySelector(".containerListaProdutos ul");
+const ul = document.querySelector(".listaProdutos");
+const spanTotal = document.querySelector('#precoTotal')
 
 function montarListaProdutos(listaProdutos) {
+  ul.classList.remove('mudarLado');
   ul.innerHTML = "";
-
+  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + produto.preco, 0)}.00`;
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
     const img = document.createElement("img");
@@ -27,6 +29,33 @@ function montarListaProdutos(listaProdutos) {
 }
 montarListaProdutos(produtos);
 
+function montarListaProdutosFiltrados (listaProdutos){
+  ul.classList.remove('.listaProdutos');
+  ul.classList.add('mudarLado');
+  ul.innerHTML = "";
+  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + produto.preco, 0)}.00`;
+  listaProdutos.forEach((produto) => {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    const span = document.createElement("span");
+    span.classList.add("span--categoria");
+    const h3 = document.createElement("h3");
+    const p = document.createElement("p");
+
+    // Adicionando dados do produto aos elementos
+    img.src = produto.img;
+    img.alt = produto.nome;
+    span.innerText = produto.secao; // categoria
+    h3.innerText = produto.nome; // nome do produto
+    p.innerText = `R$ ${produto.preco}.00`; // preco do produto
+
+    // Adicionando o elementos para o li
+    li.append(img, h3, span, p);
+    // Adicionando li ao HTML
+    ul.appendChild(li);
+  });
+}
+
 // Função para mostrar todos os produtos
 function filtrarTodos() {
   montarListaProdutos(produtos);
@@ -37,7 +66,7 @@ function filtrarPorHortifruti() {
   const listaHortifruti = produtos.filter((produto) => {
     return produto.secao === "Hortifruti";
   });
-  montarListaProdutos(listaHortifruti);
+  montarListaProdutosFiltrados(listaHortifruti); // primeiro cria-se a variavel que fará um filtro e só vai retornar produtos da secao hortifruti
 }
 
 // Função para filtrar itens de panificadora
@@ -45,7 +74,7 @@ function filtrarPorPanificadora() {
   const listaPanificadora = produtos.filter((produto) => {
     return produto.secao === "Panificadora";
   });
-  montarListaProdutos(listaPanificadora);
+  montarListaProdutosFiltrados(listaPanificadora);
 }
 
 // Função para filtrar itens laticinios
@@ -53,7 +82,7 @@ function filtrarPorLaticinio() {
   const listaLaticinio = produtos.filter((produto) => {
     return produto.secao === "Laticínios";
   });
-  montarListaProdutos(listaLaticinio);
+  montarListaProdutosFiltrados(listaLaticinio);
 }
 
 // Selecionando botoes no HTML
@@ -82,8 +111,53 @@ const botaoMostrarTodos = document.querySelector(
 );
 botaoMostrarTodos.addEventListener("click", filtrarTodos);
 
-// addEventListener para quando a pessoa estiver digitando aparecer o produto
+// Função para quando a pessoa digitar aparecer o produto 
+function filtrarInput(event){
+  const semProduto = false
+  const value = event.target.value.trim().toLowerCase()
+  const listaFiltro = produtos.filter((produto) => {
+      return produto.nome.toLowerCase().includes(value) 
+    })
+    montarListaProdutosFiltrados(listaFiltro)
+  if(listaFiltro.length === 0){
+    return semProduto
+  }
+}
 
-const input = document.querySelector('#inputPesquisar')
+// Div para caso não tenha o produto buscado
+const divAviso = document.createElement('div')
+divAviso.id = 'aviso'
+divAviso.innerText = 'Esse produto está indisponível no momento! >_<'
 
-console.log(input)
+// Campo de pesquisa
+const input = document.getElementById('inputPesquisar');
+input.addEventListener('input', (e) => {
+  if (filtrarInput(e) == false){ 
+    if(document.querySelector('#aviso') === null){
+     ul.append(divAviso)
+    }
+  }
+});
+// Função para filtrar o botão
+function filtrarBotao(){
+  const semProduto = false
+  const value = input.value.trim().toLowerCase()
+  const listaFiltro = produtos.filter((produto) => {
+    return produto.nome.toLowerCase().includes(value) 
+  })
+  montarListaProdutosFiltrados(listaFiltro)
+  if (listaFiltro.length === 0){
+    return semProduto
+  }
+}
+// selecionei o botao do html e coloquei um escutador nele
+const botaoPesquisar = document.getElementById('btnPesquisar');
+botaoPesquisar.addEventListener('click', (e) => {
+  if (filtrarBotao(e) == false){ 
+    if(document.querySelector('#aviso') === null){
+     ul.append(divAviso)
+    }
+  }
+});
+
+

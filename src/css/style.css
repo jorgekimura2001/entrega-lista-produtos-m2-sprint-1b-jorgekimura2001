@@ -124,11 +124,13 @@ body {
 .containerListaProdutos {
   display: flex;
   flex-flow: column wrap;
+  margin-right: 146px;
+  margin-left: 146px;
 }
 
-.containerListaProdutos ul {
+.listaProdutos{
+ 
   list-style: none;
-
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -138,7 +140,8 @@ body {
   height: 275px;
   color: black;
   font-weight: bold;
-  margin: 54px 25px 58px;
+  padding: 0 25px;
+  margin: 54px 0px 58px;
   border: transparent;
 }
 /* Imagem de cada item */
@@ -202,4 +205,18 @@ body {
   background-color: #212529;
   border-radius: 4px;
   color: #fff;
+}
+
+/**/
+.mudarLado{
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+#aviso{
+  color: #212529;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 150px auto;
 }
