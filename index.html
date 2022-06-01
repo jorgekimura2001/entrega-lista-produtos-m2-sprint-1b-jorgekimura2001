@@ -39,27 +39,20 @@
 
         </div>
     </header>
-    
     <main>
-        <div class="containerPrecoTotal">
-            <p>Valor total dos produtos selecionados: </p> 
-            <div class="containerValor">
-                <span id="precoTotal">R$ 00.00</span>
-            </div>
-        </div>
         <div class="containerListaProdutos" id="listProdutos">
             <ul class="listaProdutos">
-            <!--
-                <li>
-                    <img src="./src/img/maça.png" alt="Imagem maçã">
-                    <h3>Maçã</h3>
-                    <p>R$02.00</p>
-                    <span>Seção - Hortifruti</span>
-                </li>
-            -->
             </ul>
         </div>
-
+        <aside class="main__carrinho" id="carrinho">
+            <div class="carrinho__titulo">
+                <p class="carrinho__nome">🛒 Carrinho</p>
+            </div>
+            <div class="carrinho__itens">
+                <h3 class="carrinho__vazio--titulo">🛍️</h3>
+                <p class="carrinho__vazio--conteudo">Por enquanto não temos produtos no carrinho!</p> 
+            </div>
+        </aside>
     </main>
 
     <script src="src/js/dataProdutos.js"></script>
