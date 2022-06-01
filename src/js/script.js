@@ -5,7 +5,7 @@ const spanTotal = document.querySelector('#precoTotal')
 function montarListaProdutos(listaProdutos) {
   ul.classList.remove('mudarLado');
   ul.innerHTML = "";
-  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + produto.preco, 0)}.00`;
+  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + parseFloat(produto.preco), 0)}.00`;
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
     const img = document.createElement("img");
@@ -19,7 +19,7 @@ function montarListaProdutos(listaProdutos) {
     img.alt = produto.nome;
     span.innerText = produto.secao; // categoria
     h3.innerText = produto.nome; // nome do produto
-    p.innerText = `R$ ${produto.preco}.00`; // preco do produto
+    p.innerText = `R$ ${produto.preco}`; // preco do produto
 
     // Adicionando o elementos para o li
     li.append(img, h3, span, p);
@@ -29,11 +29,11 @@ function montarListaProdutos(listaProdutos) {
 }
 montarListaProdutos(produtos);
 
-function montarListaProdutosFiltrados (listaProdutos){
+function montarListaProdutosFiltrados(listaProdutos) {
   ul.classList.remove('.listaProdutos');
   ul.classList.add('mudarLado');
   ul.innerHTML = "";
-  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + produto.preco, 0)}.00`;
+  spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + parseFloat(produto.preco), 0)}.00`;
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
     const img = document.createElement("img");
@@ -47,7 +47,7 @@ function montarListaProdutosFiltrados (listaProdutos){
     img.alt = produto.nome;
     span.innerText = produto.secao; // categoria
     h3.innerText = produto.nome; // nome do produto
-    p.innerText = `R$ ${produto.preco}.00`; // preco do produto
+    p.innerText = `R$ ${produto.preco}`; // preco do produto
 
     // Adicionando o elementos para o li
     li.append(img, h3, span, p);

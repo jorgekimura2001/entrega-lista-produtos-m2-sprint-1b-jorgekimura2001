@@ -1,60 +1,83 @@
 const produtos = [
-    {
-        nome: 'Morango 5kg',
-        preco: 7,
-        secao: 'Hortifruti',
-        categoria: 'fruta',
-        img: './src/img/morango.png'
-    },
-    {
-        nome: 'Banana',
-        preco: 4,
-        secao: 'Hortifruti',
-        categoria: 'fruta',
-        img: "./src/img/banana.png"
-    },
-    {
-        nome: 'Yorgut de Morango',
-        preco: 3,
-        secao: 'Laticínios',
-        categoria: 'Yorgut',
-        img: "./src/img/yorgut_morango.png"  
-    },
-    {
-        nome: 'Pão',
-        preco: 5,
-        secao: 'Panificadora',
-        categoria: 'Pães',
-        img: './src/img/pao.png'
-    },
-    {
-        nome: 'Leite',
-        preco: 7,
-        secao: 'Laticínios',
-        categoria: 'Leite',
-        img: './src/img/leite.png'
-    },
-    {
-        nome: 'Bolo',
-        preco: 10,
-        secao: 'Panificadora',
-        categoria: 'Bolo',
-        img: './src/img/bolo.png'
-    },
-    {
-        nome: 'Torta de Maçã',
-        preco: 4,
-        secao: 'Panificadora',
-        categoria: 'Torta',
-        img: './src/img/torta_maca.png'
-    },
+  {
+    nome: "Morango 5kg",
+    preco: "7.00",
+    secao: "Hortifruti",
+    categoria: "fruta",
+    img: "./src/img/morango.png",
+    promocao: false,
+    precoPromocao: "0",
+    componentes: ["Fibras", "Vitamina C", "Cálcio", "Ferro"],
+  },
+  {
+    nome: "Banana",
+    preco: "4.00",
+    secao: "Hortifruti",
+    categoria: "fruta",
+    img: "./src/img/banana.png",
+    promocao: true,
+    precoPromocao: "1.00",
+    componentes: ["Potássio", "Vitamina B6", "Vitamina C", "Folatos"],
+  },
+  {
+    nome: "Yorgut de Morango",
+    preco: "3.00",
+    secao: "Laticínios",
+    categoria: "Yorgut",
+    img: "./src/img/yorgut_morango.png",
+    promocao: false,
+    precoPromocao: "2.70",
+    componentes: ["Magnésio", "Fósforo", "Vitamina A", "Vitamina B6"],
+  },
+  {
+    nome: "Pão",
+    preco: "5.00",
+    secao: "Panificadora",
+    categoria: "Pães",
+    img: "./src/img/pao.png",
+    promocao: true,
+    precoPromocao: "2.50",
+    componentes: ["Cálcio", "Sódio", "Fibra Alimentar", "Proteínas"],
+  },
+  {
+    nome: "Leite",
+    preco: "7.00",
+    secao: "Laticínios",
+    categoria: "Leite",
+    img: "./src/img/leite.png",
+    promocao: false,
+    precoPromocao: "1.00",
+    componentes: ["Cálcio", "Proteínas", "Zinco", "Vitamina B2"],
+  },
+  {
+    nome: "Bolo",
+    preco: "10.00",
+    secao: "Panificadora",
+    categoria: "Bolo",
+      img: "./src/img/bolo.png",
+      promocao: true,
+    precoPromocao: '8.50',
+    componentes: ["Lipídios", "Carboidratos", "Proteínas", "Gorduras totais"],
+  },
+  {
+    nome: "Torta de Maçã",
+    preco: "4.00",
+    secao: "Panificadora",
+    categoria: "Torta",
+      img: "./src/img/torta_maca.png",
+      promocao: false,
+      precoPromocao: '0',
+      componentes: ['Gorduras trans','Proteínas','Carboidratos','Gorduras saturadas']
+  },
 
-    {
-        nome: 'Maçã',
-        preco: 4,
-        secao: 'Hortifruti',
-        categoria: 'fruta',
-        img: './src/img/maca.png'
-    }
-]
-console.log(produtos[0].nome)
+  {
+    nome: "Maçã",
+    preco: "4.00",
+    secao: "Hortifruti",
+    categoria: "fruta",
+    img: "./src/img/maca.png",
+    promocao: true,
+    precoPromocao: "1.50",
+    componentes: ["Potássio", "Vitamina A", "Vitamina E", "Vitamina C"],
+  },
+];
