@@ -56,9 +56,11 @@ body {
   line-height: 24px;
   color: #12b886;
 }
-.estiloGeralBotoes--filtrarHortifruti:hover, .estiloGeralBotoes--filtrarPanificadora:hover, .estiloGeralBotoes--filtrarLaticinios:hover{
-    color: white;
-    background-color: #12b886;
+.estiloGeralBotoes--filtrarHortifruti:hover,
+.estiloGeralBotoes--filtrarPanificadora:hover,
+.estiloGeralBotoes--filtrarLaticinios:hover {
+  color: white;
+  background-color: #12b886;
 }
 .estiloGeralBotoes--filtrarPanificadora {
   margin-left: 16px;
@@ -127,14 +129,14 @@ body {
   flex-flow: column wrap;
 }
 
-.listaProdutos{
+.listaProdutos {
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-.containerListaProdutos ul li {
+.containerListaProdutos ul .ul__List {
   height: 275px;
   color: black;
   font-weight: bold;
@@ -147,11 +149,10 @@ body {
   width: 274px;
   height: 175px;
   border-radius: 4px;
-  margin-bottom: 16px;
 }
 /* Nome de cada item */
 .containerListaProdutos ul li h3 {
-    color: #212529;
+  color: #212529;
   font-weight: 500;
   font-size: 16px;
   line-height: 27px;
@@ -159,8 +160,8 @@ body {
 }
 /* Preço de cada item */
 .containerListaProdutos ul li p {
-    color: #212529;
-  margin-top: 16px;
+  color: #212529;
+  margin-top: 13px;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -173,6 +174,7 @@ body {
   color: #868e96;
   display: flex;
   margin-top: 16px;
+  margin-bottom: 12px;
   font-weight: 500;
 }
 
@@ -206,78 +208,155 @@ body {
 }
 
 /*Estilização para mudar quando houver click no filtro de produto e quando não tiver o produto pesquisado*/
-.mudarLado{
+.mudarLado {
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
 }
-#aviso{
+#aviso {
   color: #212529;
   font-size: 24px;
   font-weight: bold;
   margin: 150px auto;
 }
 
-/*  */
-.list__btn{
-  font-family: 'Poppins', sans-serif;
+/* Estilização do botão comprar  */
+.list__btn {
+  font-family: "Poppins", sans-serif;
   color: #212529;
-    margin-top: 16px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
+  margin-top: 13px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
   background-color: transparent;
   cursor: pointer;
+  background: rgba(18, 184, 134, 0.05);
+  border: 1.5px solid rgba(18, 184, 134, 0.05);
+  border-radius: 8px;
+  padding: 8px 10px 6px;
+  color: #12b886;
+}
+.divComprar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Estilização do carrinho no momento que está vazio */
-.main__carrinho{
-  width: 350px;
+.main__carrinho {
   margin-right: 146px;
   margin-top: 59px;
   margin-left: 17px;
 }
-.carrinho__titulo{
+.carrinho__titulo {
+  width: 290px;
   border-radius: 12px 12px 0px 0px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #12B886;
+  background-color: #12b886;
   color: #fff;
   height: 42px;
-  margin-bottom: 46px;
 }
-.carrinho__nome{
+.carrinho__nome {
   padding: 11px;
   font-weight: 500;
-font-size: 16px;
-line-height: 27px;
+  font-size: 16px;
+  line-height: 27px;
 }
-.carrinho__itens{
-  padding: 0 67px 68px 65px;
+.carrinho__itens {
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.carrinho__vazio--titulo{
+.carrinho__itens--mod {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carrinho__itens--hiden {
+  display: none;
+  width: 36px;
+  height: 40px;
+}
+.carrinho__vazio--titulo {
+  margin-top: 46px;
+  display: flex;
   width: 36px;
   height: 40px;
 }
 .carrinho__vazio--conteudo {
-  color: #868E96;
+  color: #868e96;
   width: 243px;
   font-weight: 400;
-font-size: 14px;
-line-height: 24px;
-text-align: center;
-
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
 }
-main{
+main {
   display: flex;
   margin-left: 146px;
 }
-.carrinho--escondido{
+.carrinho--escondido {
   display: none;
+}
+
+.card__ol {
+  list-style: auto;
+  padding: 0 25px;
+  border: transparent;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+.divCard__carrinho {
+  width: 290px;
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.divConteudo__carrinho {
+  margin-left: 12px;
+}
+.divConteudo__carrinho > h3 {
+  width: 167px;
+  margin-bottom: 12px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+.divConteudo__carrinho > span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #868e96;
+}
+.divConteudo__carrinho > p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 8px;
+  color: #212529;
+}
+.imgCard__carrinho {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+}
+.carrinho__btn--remover{
+  cursor: pointer;
+  background-color: transparent;
+  width: 9px;
+  height: 12px;
 }
