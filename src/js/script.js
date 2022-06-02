@@ -1,9 +1,12 @@
-// Selecionando elemento ul do HTML
+// Selecionando elementos
 const ul = document.querySelector(".listaProdutos");
-// const spanTotal = document.querySelector('#precoTotal')
-const carrinho = document.querySelector('.carrinho__itens')
-const carrinhoVazio__titulo = document.querySelector('.carrinho__vazio--titulo')
-const carrinhoVazio__conteudo = document.querySelector('.carrinho__vazio--conteudo')
+const carrinho = document.querySelector('.carrinho__itens');
+const carrinhoVazio__titulo = document.querySelector('.carrinho__vazio--titulo');
+const carrinhoVazio__conteudo = document.querySelector('.carrinho__vazio--conteudo'); 
+const aside = document.querySelector('aside');
+
+// Array vazio que irá receber o produto quando for clicado Comprar
+let carrinhoCompras = []
 
 // Função para adicionar id à cada objeto
 function adicionarId (){
@@ -18,10 +21,56 @@ adicionarId()
 function montarListaProdutos(listaProdutos) {
   ul.classList.remove('mudarLado');
   ul.innerHTML = "";
-  
-  // spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + parseFloat(produto.preco), 0)}.00`;
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
+    li.classList.add('ul__List')
+    const img = document.createElement("img");
+    const span = document.createElement("span");
+    span.classList.add("span--categoria");
+    const h3 = document.createElement("h3");
+    const div_Comprar = document.createElement('div')
+    div_Comprar.classList.add('divComprar')
+    const p = document.createElement("p");
+    const btn = document.createElement('button');
+    btn.classList.add('list__btn')
+    btn.id = produto.id
+    
+    // Lista de nutrientes
+    const ol = document.createElement('ol');
+    ol.classList.add('card__ol')
+
+    // Adicionando dados do produto aos elementos
+    img.src = produto.img;
+    img.alt = produto.nome;
+    h3.innerText = produto.nome; // nome do produto
+    span.innerText = produto.secao; // categoria
+    produto.componentes.forEach((element) => {
+      const ol__List = document.createElement('li');
+      ol__List.innerText = element;
+      ol.append(ol__List)
+    })
+    p.innerText = `R$ ${produto.preco}`; // preco do produto
+    btn.innerText = "Comprar"
+    
+    // Adicionando o elementos para o li
+    div_Comprar.append(p, btn)
+    li.append(img, h3, span, ol, div_Comprar);
+    // Adicionando li ao HTML
+    ul.appendChild(li);
+
+    // Adicionando evento ao botão para quando ser clicado criar a div no carrinho
+    btn.addEventListener('click', carrinhoTemplate)
+  });
+}
+montarListaProdutos(produtos);
+
+function montarListaProdutosFiltrados(listaProdutos) {
+  ul.classList.remove('.listaProdutos');
+  ul.classList.add('mudarLado');
+  ul.innerHTML = "";
+  listaProdutos.forEach((produto) => {
+    const li = document.createElement("li");
+    li.classList.add('ul__List');
     const img = document.createElement("img");
     const span = document.createElement("span");
     span.classList.add("span--categoria");
@@ -30,56 +79,34 @@ function montarListaProdutos(listaProdutos) {
     const btn = document.createElement('button');
     btn.classList.add('list__btn')
     btn.id = produto.id
-
-    // Adicionando dados do produto aos elementos
-    img.src = produto.img;
-    img.alt = produto.nome;
-    span.innerText = produto.secao; // categoria
-    h3.innerText = produto.nome; // nome do produto
-    p.innerText = `R$ ${produto.preco}`; // preco do produto
-    btn.innerText = "Adicionar ao carrinho"
-
-    // Adicionando o elementos para o li
-    li.append(img, h3, span, p, btn);
-    // Adicionando li ao HTML
-    ul.appendChild(li);
-
-    btn.addEventListener('click', carrinhoTemplate)
-  });
-
-  // Adicionando evento ao botão para quando ser clicado criar a div no carrinho
-  
-}
-montarListaProdutos(produtos);
-
-function montarListaProdutosFiltrados(listaProdutos) {
-  ul.classList.remove('.listaProdutos');
-  ul.classList.add('mudarLado');
-  ul.innerHTML = "";
- // spanTotal.innerText = `R$ ${listaProdutos.reduce((total, produto) => total + parseFloat(produto.preco), 0)}.00`;
-  listaProdutos.forEach((produto) => {
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    const span = document.createElement("span");
-    span.classList.add("span--categoria");
-    const h3 = document.createElement("h3");
-    const p = document.createElement("p");
-    const btn = document.createElement('button');
-    btn.classList.add('list__btn')
-
-    // Adicionando dados do produto aos elementos
-    img.src = produto.img;
-    img.alt = produto.nome;
-    span.innerText = produto.secao; // categoria
-    h3.innerText = produto.nome; // nome do produto
-    p.innerText = `R$ ${produto.preco}`; // preco do produto
-    btn.innerText = 'Adicionar ao carrinho'
+    const div_Comprar = document.createElement('div')
+    div_Comprar.classList.add('divComprar')
     
+    // Lista de nutrientes
+    const ol = document.createElement('ol');
+    ol.classList.add('card__ol')
 
+    // Adicionando dados do produto aos elementos
+    img.src = produto.img;
+    img.alt = produto.nome;
+    h3.innerText = produto.nome; // nome do produto
+    span.innerText = produto.secao; // categoria
+    produto.componentes.forEach((element) => {
+      const ol__List = document.createElement('li');
+      ol__List.innerText = element;
+      ol.append(ol__List)
+    })
+    p.innerText = `R$ ${produto.preco}`; // preco do produto
+    btn.innerText = "Comprar"
+    
     // Adicionando o elementos para o li
-    li.append(img, h3, span, p, btn);
+    div_Comprar.append(p, btn)
+    li.append(img, h3, span, ol, div_Comprar);
     // Adicionando li ao HTML
     ul.appendChild(li);
+
+    // Adicionando evento ao botão para quando ser clicado criar a div no carrinho
+    btn.addEventListener('click', carrinhoTemplate)
   });
 }
 
@@ -188,47 +215,80 @@ botaoPesquisar.addEventListener('click', (e) => {
   }
 });
 
-
 // selecionar o btn criado por Dom e adicionar ao carrinho 
 // Função para quando ser clicado criar a div 
 function carrinhoTemplate(evt){
   produtos.forEach((produto) => { 
-    if(produto.id === parseFloat(evt.target.id)){
-      criarCardCarrinho(produto)
+    if(produto.id === +evt.target.id){
+      carrinhoCompras.push(produto)
+      criarCardCarrinho(carrinhoCompras)
     }
   })
 }
-let compras = []
-// Função para criar o card com a img, nome, secao, preco e o icone de remover produto
-function criarCardCarrinho (produto){
-    carrinhoVazio__titulo.classList.add('carrinho--escondido')
-    carrinhoVazio__conteudo.classList.add('carrinho--escondido')
 
+// Função para criar o card com a img, nome, secao, preco e o icone de remover produto
+function criarCardCarrinho (arrayProdutos){
+  carrinho.classList.add('carrinho__itens--mod')
+  carrinho.classList.remove('carrinho__itens')
+  carrinho.innerHTML = "";
+  arrayProdutos.forEach((produto) => {
     const divCard__carrinho = document.createElement('div');
+    divCard__carrinho.classList.add('divCard__carrinho')
       const figureCard__carrinho = document.createElement('figure');
         const imgCard__carrinho = document.createElement('img');
+        imgCard__carrinho.classList.add("imgCard__carrinho");
         imgCard__carrinho.src = produto.img
       figureCard__carrinho.appendChild(imgCard__carrinho)
 
-      const divConteudo__carrinho = document.createElement('div')
+      const divConteudo__carrinho = document.createElement('div');
+      divConteudo__carrinho.classList.add('divConteudo__carrinho');
         const tituloCard__carrinho = document.createElement('h3');
         tituloCard__carrinho.innerText = produto.nome;
+        tituloCard__carrinho.classList.add('tituloCard__carrinho');        
         const secaoCard__carrinho = document.createElement('span');
         secaoCard__carrinho.innerText = produto.secao
+        secaoCard__carrinho.classList.add('secaoCard__carrinho');
         const precoCard__carrinho = document.createElement('p');
         precoCard__carrinho.innerText = `R$ ${produto.preco}`;
-        const btnRemover__carrinho = document.createElement('button');
-        btnRemover__carrinho.innerText = '🗑️';
-        btnRemover__carrinho.classList.add('carrinho__btn--remover')
-        btnRemover__carrinho.addEventListener('click', removerCarrinho); 
-      divConteudo__carrinho.append(tituloCard__carrinho, secaoCard__carrinho, precoCard__carrinho, btnRemover__carrinho)
+        precoCard__carrinho.classList.add('precoCard__carrinho');
+      divConteudo__carrinho.append(tituloCard__carrinho, secaoCard__carrinho, precoCard__carrinho)
 
-    divCard__carrinho.append(figureCard__carrinho, divConteudo__carrinho)
+      const btnRemover__carrinho = document.createElement('button');
+      btnRemover__carrinho.innerText = '🗑️';
+      btnRemover__carrinho.classList.add('carrinho__btn--remover')
+      btnRemover__carrinho.addEventListener('click', removerCarrinho); 
+
+    divCard__carrinho.append(figureCard__carrinho, divConteudo__carrinho, btnRemover__carrinho)
     carrinho.appendChild(divCard__carrinho) 
+
+    
+    const divQuantidade = document.createElement('div')
+    divQuantidade.innerHTML = `<p> Quantidade: </p> <span>olá </span>`;
+
+    const divPrecoTotal = document.createElement('div')
+    divPrecoTotal.innerHTML = `<p> Total: </p> <span> olá </span>`
+
+    aside.append(divQuantidade, divPrecoTotal)
     return carrinho
+  })
 }
 
 // Função para remover item do carrinho 
 function removerCarrinho(event){
+  console.log(carrinhoCompras)
+  carrinhoCompras = carrinhoCompras.filter((element) => {
+    return element.nome !== event.target.parentElement.firstChild.innerText})
+  console.log(carrinhoCompras)
   
+  if(carrinhoCompras.length === 0){
+    carrinho.innerHTML = '';
+    const h3 = document.createElement('h3');
+    h3.innerText = '🛍️';
+    h3.classList.add('carrinho__vazio--titulo');
+    const p = document.createElement('p');
+    p.innerText = 'Por enquanto não temos produtos no carrinho';
+    carrinho.append(h3, p)
+  }else{
+    criarCardCarrinho(carrinhoCompras)
+  }
 }
