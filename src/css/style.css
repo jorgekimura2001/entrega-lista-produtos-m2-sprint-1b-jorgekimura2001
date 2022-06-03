@@ -23,7 +23,6 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
 .estiloGeralBotoes {
   border: none;
   font-weight: bold;
@@ -33,7 +32,6 @@ body {
   display: block;
   font-size: 0.9rem;
 }
-
 .estiloGeralBotoes--mostrarTodos {
   padding: 14px 26px;
   font-weight: 500;
@@ -42,7 +40,6 @@ body {
   color: #fff;
   background-color: #12b886;
 }
-
 .estiloGeralBotoes--filtrarHortifruti {
   margin-left: 12px;
   display: flex;
@@ -90,7 +87,6 @@ body {
   line-height: 24px;
   color: #12b886;
 }
-
 .containerBuscaPorFiltro {
   margin-left: 146px;
   display: flex;
@@ -101,7 +97,6 @@ body {
   justify-content: space-between;
   margin-right: 146px;
 }
-
 .campoBuscaPorNome {
   margin-right: 9px;
   box-sizing: border-box;
@@ -112,7 +107,6 @@ body {
   width: 324px;
   height: 52px;
 }
-
 .estiloGeralBotoes--botaoBuscaPorNome {
   width: 59px;
   height: 52px;
@@ -123,19 +117,16 @@ body {
 }
 
 /* CONTEÚDO */
-
 .containerListaProdutos {
   display: flex;
   flex-flow: column wrap;
 }
-
 .listaProdutos {
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
-
 .containerListaProdutos ul .ul__List {
   height: 275px;
   color: black;
@@ -177,36 +168,6 @@ body {
   margin-bottom: 12px;
   font-weight: 500;
 }
-
-/* PREÇO TOTAL */
-.containerPrecoTotal {
-  padding: 10px 20px 12px;
-  margin-right: 146px;
-  margin-left: 146px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 44px;
-  text-align: center;
-  box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.25);
-}
-.containerPrecoTotal p {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  color: #212529;
-}
-.containerValor {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  width: 82px;
-  height: 34px;
-  background-color: #212529;
-  border-radius: 4px;
-  color: #fff;
-}
-
 /*Estilização para mudar quando houver click no filtro de produto e quando não tiver o produto pesquisado*/
 .mudarLado {
   list-style: none;
@@ -296,6 +257,7 @@ body {
   line-height: 24px;
   text-align: center;
 }
+/* Estilização da lista ordenada bem como dos itens criados por DOM */
 main {
   display: flex;
   margin-left: 146px;
@@ -354,9 +316,67 @@ main {
   height: 70px;
   border-radius: 8px;
 }
-.carrinho__btn--remover{
+.carrinho__btn--remover {
   cursor: pointer;
   background-color: transparent;
   width: 9px;
   height: 12px;
 }
+.quantidadeValorTotal {
+  display: none;
+}
+.quantidade--show {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 290px;
+  background: #f8f9fa;
+  margin-top: 34px;
+}
+.quantidadeProdutos {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+.quantidadeProdutos > p {
+  margin-right: 170px;
+  margin-left: 13px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: #000000;
+}
+.quantidadeProdutos > span {
+  margin-right: 18px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: #000000;
+}
+.precoTotal {
+  display: flex;
+  justify-content: space-between;
+}
+.precoTotal > p{
+  margin-right: 170px;
+  margin-left: 13px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: #000000;
+}
+.precoTotal > span{
+  margin-right: 18px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: #000000;
+} 

@@ -7,11 +7,6 @@ const carrinhoVazio__conteudo = document.querySelector('.carrinho__vazio--conteu
 
 const aside = document.querySelector('aside');
 
-const quantidadeProdutos = document.createElement('div');
-quantidadeProdutos.classList.add('quantidadeProdutos')
-const precoTotal = document.createElement('div')
-precoTotal.classList.add('precoTotal')
-
 // Array vazio que irá receber o produto quando for clicado Comprar
 let carrinhoCompras = []
 
@@ -177,7 +172,7 @@ function filtrarInput(event){
   const semProduto = false
   const value = event.target.value.trim().toLowerCase()
   const listaFiltro = produtos.filter((produto) => {
-      return produto.nome.toLowerCase().includes(value) 
+      return produto.nome.toLowerCase().includes(value) || produto.secao.toLowerCase().includes(value)
     })
     montarListaProdutosFiltrados(listaFiltro)
   if(listaFiltro.length === 0){
@@ -204,7 +199,7 @@ function filtrarBotao(){
   const semProduto = false
   const value = input.value.trim().toLowerCase()
   const listaFiltro = produtos.filter((produto) => {
-    return produto.nome.toLowerCase().includes(value) 
+    return produto.nome.toLowerCase().includes(value) || produto.secao.toLowerCase().includes(value)
   })
   montarListaProdutosFiltrados(listaFiltro)
   if (listaFiltro.length === 0){
@@ -222,15 +217,20 @@ botaoPesquisar.addEventListener('click', (e) => {
   }
 });
 
-// selecionar o btn criado por Dom e adicionar ao carrinho 
 // Função para quando ser clicado criar a div 
 function carrinhoTemplate(evt){
   produtos.forEach((produto) => { 
     if(produto.id === +evt.target.id){
-      carrinhoCompras.push(produto)
-      criarCardCarrinho(carrinhoCompras)
+      if(!verificarRepetidos(produto)){
+        carrinhoCompras.push(produto)
+        criarCardCarrinho(carrinhoCompras)
+        calcularValores();   
+      }
     }
   })
+}
+function verificarRepetidos (produto){
+  return carrinhoCompras.find((produtoCarrinho) => produtoCarrinho.id === produto.id)
 }
 
 // Função para criar o card com a img, nome, secao, preco e o icone de remover produto
@@ -269,9 +269,6 @@ function criarCardCarrinho (arrayProdutos){
     divCard__carrinho.append(figureCard__carrinho, divConteudo__carrinho, btnRemover__carrinho)
     carrinho.appendChild(divCard__carrinho) 
 
-    // let quantidadeValorTotal = soma()
-
-    // aside.append(quantidadeValorTotal);
     return carrinho
   })
 }
@@ -283,22 +280,9 @@ function removerCarrinho(event) {
     return element.nome === event.target.parentElement.firstChild.firstChild.alt
   }); 
   // dando um splice no carrinho de compras quando estiver no indice do produto quando houver o click e apagando um
-  carrinhoCompras.splice(carrinhoCompras.indexOf(divExcluir), 1)
-  
-  // Fazer uma verificação caso o item já esteja no carrinho utilizando inicialmente o forEach
-  let contador = 0
-  let evitarRepetidos = carrinhoCompras.filter((element) => {
-    if (element.nome === element.nome && contador === 0) {
-      contador++
-      return false
-    }
-    else {
-      return true
-    }
-  });
+  carrinhoCompras.splice(carrinhoCompras.indexOf(divExcluir), 1);
 
-  console.log(evitarRepetidos)
-
+  calcularValores()
   
   if(carrinhoCompras.length === 0){
     carrinho.innerHTML = '';
@@ -314,14 +298,20 @@ function removerCarrinho(event) {
   }
 }
 
-// function soma() {
-//   let soma = 0;
-//   carrinhoCompras.forEach((produto) => {
-//     let newValue = produto.id += 1
-//     quantidadeProdutos.innerHTML = `<p> Quantidade: </p> <span> ${newValue} </span>`;
-//     soma += parseFloat(produto.preco);
-//     precoTotal.innerHTML = `<p> Total: </p> <span> ${soma} </span>`;
-//   })
-//   return carrinhoCompras
+//Função para calcular valores ou seja, adicionar a quantidade e o valor total
+function calcularValores() {
+  const quantidade__mod = document.getElementById('quantidadeTotal--mod');
+  quantidade__mod.classList.add('quantidade--show');
 
-// }
+  let soma = carrinhoCompras.reduce((acc, atual) => acc + parseFloat(atual.preco), 0)
+  let quantidade = carrinhoCompras.length;
+  
+  if(quantidade === 0){
+    quantidade__mod.classList.remove('quantidade--show');
+  } 
+  console.log(carrinhoCompras)
+  const precoTotal = document.getElementById('precoTotal');
+  const quantidadeProdutos = document.getElementById('quantidadeProdutos');
+  precoTotal.innerText = `R$ ${soma}.00`;
+  quantidadeProdutos.innerText = quantidade;
+}
