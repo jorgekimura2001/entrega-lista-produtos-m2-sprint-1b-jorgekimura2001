@@ -1,9 +1,16 @@
 // Selecionando elementos
 const ul = document.querySelector(".listaProdutos");
+
 const carrinho = document.querySelector('.carrinho__itens');
 const carrinhoVazio__titulo = document.querySelector('.carrinho__vazio--titulo');
 const carrinhoVazio__conteudo = document.querySelector('.carrinho__vazio--conteudo'); 
+
 const aside = document.querySelector('aside');
+
+const quantidadeProdutos = document.createElement('div');
+quantidadeProdutos.classList.add('quantidadeProdutos')
+const precoTotal = document.createElement('div')
+precoTotal.classList.add('precoTotal')
 
 // Array vazio que irá receber o produto quando for clicado Comprar
 let carrinhoCompras = []
@@ -238,6 +245,7 @@ function criarCardCarrinho (arrayProdutos){
         const imgCard__carrinho = document.createElement('img');
         imgCard__carrinho.classList.add("imgCard__carrinho");
         imgCard__carrinho.src = produto.img
+        imgCard__carrinho.alt = produto.nome
       figureCard__carrinho.appendChild(imgCard__carrinho)
 
       const divConteudo__carrinho = document.createElement('div');
@@ -261,24 +269,36 @@ function criarCardCarrinho (arrayProdutos){
     divCard__carrinho.append(figureCard__carrinho, divConteudo__carrinho, btnRemover__carrinho)
     carrinho.appendChild(divCard__carrinho) 
 
-    
-    const divQuantidade = document.createElement('div')
-    divQuantidade.innerHTML = `<p> Quantidade: </p> <span>olá </span>`;
+    // let quantidadeValorTotal = soma()
 
-    const divPrecoTotal = document.createElement('div')
-    divPrecoTotal.innerHTML = `<p> Total: </p> <span> olá </span>`
-
-    aside.append(divQuantidade, divPrecoTotal)
+    // aside.append(quantidadeValorTotal);
     return carrinho
   })
 }
 
 // Função para remover item do carrinho 
-function removerCarrinho(event){
-  console.log(carrinhoCompras)
-  carrinhoCompras = carrinhoCompras.filter((element) => {
-    return element.nome !== event.target.parentElement.firstChild.innerText})
-  console.log(carrinhoCompras)
+function removerCarrinho(event) {
+  // se o nome do elemento (objeto) for o mesmo do alt (que é produto.nome) deve armazenado nessa variavel (array)
+  const divExcluir = carrinhoCompras.find((element) => {
+    return element.nome === event.target.parentElement.firstChild.firstChild.alt
+  }); 
+  // dando um splice no carrinho de compras quando estiver no indice do produto quando houver o click e apagando um
+  carrinhoCompras.splice(carrinhoCompras.indexOf(divExcluir), 1)
+  
+  // Fazer uma verificação caso o item já esteja no carrinho utilizando inicialmente o forEach
+  let contador = 0
+  let evitarRepetidos = carrinhoCompras.filter((element) => {
+    if (element.nome === element.nome && contador === 0) {
+      contador++
+      return false
+    }
+    else {
+      return true
+    }
+  });
+
+  console.log(evitarRepetidos)
+
   
   if(carrinhoCompras.length === 0){
     carrinho.innerHTML = '';
@@ -286,9 +306,22 @@ function removerCarrinho(event){
     h3.innerText = '🛍️';
     h3.classList.add('carrinho__vazio--titulo');
     const p = document.createElement('p');
-    p.innerText = 'Por enquanto não temos produtos no carrinho';
+    p.innerText = 'Por enquanto não temos produtos no carrinho!';
+    p.classList.add('carrinho__vazio--conteudo')
     carrinho.append(h3, p)
   }else{
     criarCardCarrinho(carrinhoCompras)
   }
 }
+
+// function soma() {
+//   let soma = 0;
+//   carrinhoCompras.forEach((produto) => {
+//     let newValue = produto.id += 1
+//     quantidadeProdutos.innerHTML = `<p> Quantidade: </p> <span> ${newValue} </span>`;
+//     soma += parseFloat(produto.preco);
+//     precoTotal.innerHTML = `<p> Total: </p> <span> ${soma} </span>`;
+//   })
+//   return carrinhoCompras
+
+// }
