@@ -1,6 +1,6 @@
 // Selecionando elementos
 const ul = document.querySelector(".listaProdutos");
-
+const main = document.querySelector('main');
 const carrinho = document.querySelector('.carrinho__itens');
 const carrinhoVazio__titulo = document.querySelector('.carrinho__vazio--titulo');
 const carrinhoVazio__conteudo = document.querySelector('.carrinho__vazio--conteudo'); 
@@ -21,7 +21,7 @@ function adicionarId (){
 adicionarId()
 
 function montarListaProdutos(listaProdutos) {
-  ul.classList.remove('mudarLado');
+  main.classList.remove('mudarLado');
   ul.innerHTML = "";
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
@@ -68,7 +68,7 @@ montarListaProdutos(produtos);
 
 function montarListaProdutosFiltrados(listaProdutos) {
   ul.classList.remove('.listaProdutos');
-  ul.classList.add('mudarLado');
+  main.classList.add('mudarLado');
   ul.innerHTML = "";
   listaProdutos.forEach((produto) => {
     const li = document.createElement("li");
@@ -172,10 +172,10 @@ function filtrarInput(event){
   const semProduto = false
   const value = event.target.value.trim().toLowerCase()
   const listaFiltro = produtos.filter((produto) => {
-      return produto.nome.toLowerCase().includes(value) || produto.secao.toLowerCase().includes(value)
-    })
+      return produto.nome.toLowerCase().includes(value) || produto.secao.toLowerCase().includes(value) || produto.categoria.toLowerCase().includes(value)
+  })
     montarListaProdutosFiltrados(listaFiltro)
-  if(listaFiltro.length === 0){
+  if (listaFiltro.length === 0) {
     return semProduto
   }
 }
