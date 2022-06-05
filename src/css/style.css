@@ -1,7 +1,12 @@
+/* configuração global seguindo o figma */
 body {
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+main {
+  display: flex;
+  margin-left: 146px;
+}
+
 /* CABEÇALHO */
 #logo {
   margin-bottom: 39px;
@@ -210,17 +215,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-.carrinho__itens--mod {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.carrinho__itens--hiden {
-  display: none;
-  width: 36px;
-  height: 40px;
-}
 .carrinho__vazio--titulo {
   margin-top: 46px;
   display: flex;
@@ -235,15 +229,7 @@ body {
   line-height: 24px;
   text-align: center;
 }
-/* Estilização da lista ordenada bem como dos itens criados por DOM */
-main {
-  display: flex;
-  margin-left: 146px;
-}
-.carrinho--escondido {
-  display: none;
-}
-
+/* Estilização da lista de nutrientes/componentes */
 .card__ol {
   list-style: auto;
   padding: 0 25px;
@@ -251,6 +237,13 @@ main {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
+}
+/* Esitlização quando o carrinho tem itens */
+.carrinho__itens--mod {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .divCard__carrinho {
   width: 290px;
@@ -300,6 +293,7 @@ main {
   width: 9px;
   height: 12px;
 }
+/* Div abaixo do carrinho */
 .quantidadeValorTotal {
   display: none;
 }
@@ -314,7 +308,8 @@ main {
 .quantidadeProdutos {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 44px;
+  margin-bottom: 22px;
+  margin-top: 22px;
 }
 .quantidadeProdutos > p {
   margin-right: 170px;
@@ -338,6 +333,7 @@ main {
 .precoTotal {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 22px;
 }
 .precoTotal > p {
   margin-right: 170px;
@@ -358,6 +354,7 @@ main {
   line-height: 13px;
   color: #000000;
 }
+/* Criei class e divs para poder usar o overflow porém não consegui */
 .mobile--mod {
   width: 620px;
   margin-left: 146px;
@@ -369,10 +366,17 @@ main {
 .containerListaProdutos {
   display: flex;
 }
-/* Breakpoints */
-@media (max-width: 375px) {
+
+/* BREAKPOINTS - Deixando no formato mobile */
+@media (max-width: 376px) {
   #logo {
+    padding: 0;
     margin-bottom: 0;
+    box-shadow: none;
+    height: 27px;
+  }
+  #logo > h1 {
+    padding-top: 9px;
   }
   .filtro {
     align-items: baseline;
@@ -389,6 +393,7 @@ main {
   }
   .estiloGeralBotoes--filtrarHortifruti {
     margin-right: 12px;
+    width: 122px;
   }
   .estiloGeralBotoes--filtrarPanificadora {
     margin-left: 0;
@@ -402,8 +407,9 @@ main {
   }
   .campoBuscaPorNome {
     width: 271px;
-    height: 52px;
+    color: #515252;
     margin-right: 18px;
+    font-size: 16px;
   }
   main {
     margin-left: 0;
@@ -417,5 +423,49 @@ main {
   }
   .card__ol {
     display: none;
+  }
+  .carrinho__titulo{
+    width: 350px
+  }
+  .main__carrinho{
+    margin-left: 13px;
+    margin-right: 12px;
+    margin-top: 21px;
+  }
+  .containerListaProdutos ul .ul__List{
+    padding: 0 13px;
+    margin-top: 24px;
+  }
+  .divCard__carrinho{
+    width: 350px;
+    margin-top: 12px;
+  }
+  .divConteudo__carrinho{
+    width: 212px;
+    margin-right: 20px;
+  }
+  .quantidade--show{
+    width: 350px;
+    margin-top: 26px;
+  }
+  .quantidadeProdutos{
+    margin-bottom: 0;
+  }
+  .quantidadeProdutos > p {
+    margin: 14px 243px 12px 9px;
+  }
+  .quantidadeProdutos > span{
+    margin-top: 17px;
+    margin-right: 8px;
+  }
+   .precoTotal{
+     margin-top: 12px;
+  } 
+   .precoTotal > p {
+    margin: 14px 243px 12px 9px;
+  }
+  .precoTotal > span{
+    margin-top: 17px;
+    margin-right: 8px;
   }
 }
