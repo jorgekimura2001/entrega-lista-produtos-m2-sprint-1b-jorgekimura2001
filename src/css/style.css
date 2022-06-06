@@ -9,6 +9,7 @@ main {
 
 /* CABEÇALHO */
 #logo {
+  width: 100vw;
   margin-bottom: 39px;
   display: flex;
   align-items: center;
@@ -355,9 +356,8 @@ main {
   line-height: 13px;
   color: #000000;
 }
-/* Criei class e divs para poder usar o overflow porém não consegui */
+/* Criei class e divs para poder usar o overflow*/
 .mobile--mod {
-  width: 620px;
   margin-left: 146px;
 }
 .filtro {
@@ -370,10 +370,6 @@ main {
 
 /* BREAKPOINTS - Deixando no formato mobile */
 @media (max-width: 375px) {
-  html{
-    width: 100vw;
-    height: 100vh;
-  }
   #logo {
     padding: 0;
     margin-bottom: 0;
@@ -388,13 +384,13 @@ main {
     margin-left: 13px;
     margin-top: 51px;
     flex-direction: column;
-    width: 100vw;
   }
   .containerBuscaPorFiltro {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 100vw;
+    width: 95vw; 
     overflow-x: scroll;
   }
   .estiloGeralBotoes--mostrarTodos {
@@ -488,5 +484,6 @@ main {
   }
   .containerBuscaPorNome{
     margin-top: 12px;
+    margin-right: 0;
   }
 }
