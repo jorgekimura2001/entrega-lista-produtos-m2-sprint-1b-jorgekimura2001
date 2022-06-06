@@ -486,4 +486,7 @@ main {
   #aviso{
     margin: 150px 0 150px 13px;
   }
+  .containerBuscaPorNome{
+    margin-top: 12px;
+  }
 }
