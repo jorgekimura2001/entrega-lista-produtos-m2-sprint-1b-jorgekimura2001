@@ -33,6 +33,7 @@ main {
   cursor: pointer;
 }
 .estiloGeralBotoes--mostrarTodos {
+  width: 177px;
   padding: 14px 26px;
   font-weight: 500;
   font-size: 16px;
@@ -368,7 +369,11 @@ main {
 }
 
 /* BREAKPOINTS - Deixando no formato mobile */
-@media (max-width: 376px) {
+@media (max-width: 375px) {
+  html{
+    width: 100vw;
+    height: 100vh;
+  }
   #logo {
     padding: 0;
     margin-bottom: 0;
@@ -383,27 +388,35 @@ main {
     margin-left: 13px;
     margin-top: 51px;
     flex-direction: column;
+    width: 100vw;
   }
   .containerBuscaPorFiltro {
-    margin-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100vw;
+    overflow-x: scroll;
   }
   .estiloGeralBotoes--mostrarTodos {
-    width: 177px;
-    line-height: 0;
+    margin-bottom: 12px;
+    height: 52px;
+    width: 177px
   }
   .estiloGeralBotoes--filtrarHortifruti {
+    margin-bottom: 12px;
     margin-right: 12px;
     width: 122px;
   }
   .estiloGeralBotoes--filtrarPanificadora {
+    margin-bottom: 12px;
     margin-left: 0;
   }
   .estiloGeralBotoes--filtrarLaticinios {
+    margin-bottom: 12px;
     margin-left: 12px;
   }
   .mobile--mod {
     margin-left: 0;
-    overflow-x: scroll;
   }
   .campoBuscaPorNome {
     width: 271px;
@@ -419,7 +432,9 @@ main {
   .listaProdutos {
     list-style: none;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    width: 100vw;
   }
   .card__ol {
     display: none;
@@ -467,5 +482,8 @@ main {
   .precoTotal > span{
     margin-top: 17px;
     margin-right: 8px;
+  }
+  #aviso{
+    margin: 150px 0 150px 13px;
   }
 }
